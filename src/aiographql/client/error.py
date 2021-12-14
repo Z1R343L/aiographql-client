@@ -19,10 +19,9 @@ class GraphQLError:
     def load(cls: Type[T], data: Dict[str, Any]) -> T:
         construct_class = cls
         custom_keys = [
-            key
-            for key in data.keys()
-            if key not in {field.name for field in fields(cls)}
+            key for key in data if key not in {field.name for field in fields(cls)}
         ]
+
 
         if custom_keys:
             custom_fields = [
